@@ -20,7 +20,7 @@ return {
         vim.api.nvim_create_autocmd("BufWritePost", {
             pattern = "*.tex",
             callback = function()
-                -- vim.cmd("VimtexCompile")
+                --- vim.cmd("VimtexCompile")
                 vim.cmd("VimtexView")
             end,
         })

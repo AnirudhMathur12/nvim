@@ -14,6 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
         { import = "anirudh.plugins" },
         { import = "anirudh.plugins.lsp" },
+        { import = "anirudh.plugins.dap" },
     },
     {
         --     install = {

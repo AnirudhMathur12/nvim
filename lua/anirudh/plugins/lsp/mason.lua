@@ -1,17 +1,14 @@
 return {
-    "williamboman/mason-lspconfig.nvim",
-    opts = {
-        ensure_installed = {
-            "clangd",
-            "lua_ls",
-        }
-    },
+	"williamboman/mason-lspconfig.nvim",
+	dependencies = {
+		"williamboman/mason.nvim",
+		"neovim/nvim-lspconfig",
+	},
+	config = function()
+		require("mason").setup()
 
-    dependencies = {
-        "williamboman/mason.nvim",
-        "neovim/nvim-lspconfig",
-
-    }
-
-
+		require("mason-lspconfig").setup({
+			ensure_installed = { "clangd", "lua_ls" },
+		})
+	end,
 }

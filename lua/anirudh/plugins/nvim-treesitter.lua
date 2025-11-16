@@ -5,10 +5,11 @@ return {
         local configs = require("nvim-treesitter.configs")
 
         configs.setup({
-            ensure_installed = { "c", "python" },
+            ensure_installed = { "c", "cpp", "python" },
             sync_install = false,
             highlight = { enable = true, additional_vim_regex_highlighting = false },
             indent = { enable = true },
         })
+
     end,
 }

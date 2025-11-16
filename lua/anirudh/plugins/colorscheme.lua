@@ -1,23 +1,21 @@
+-- lua/plugins/colorscheme.lua
 return {
-    "folke/tokyonight.nvim",
-    lazy = false,
+  {
+    "ellisonleao/gruvbox.nvim",
     priority = 1000,
     config = function()
-        require("tokyonight").setup({
-            style = "night", -- options: "storm" (contrast), "night", "day"
-            transparent = false,
-            terminal_colors = true,
-            styles = {
-                comments = { italic = true },
-                keywords = { italic = false },
-                functions = {},
-                variables = {},
-            },
-            sidebars = { "qf", "help" },
-            hide_inactive_statusline = false,
-            dim_inactive = false,
-            lualine_bold = true,
+      vim.opt.termguicolors = true
+      vim.opt.background = "dark"
+
+        require("gruvbox").setup({
+
+            overrides = {
+                ["@namespace"] = {fg = "#8ec07c"},
+                ["@type.qualifier"] = {fg = "#8ec07c"},
+            }
         })
-        vim.cmd("colorscheme tokyonight")
+
+      vim.cmd("colorscheme gruvbox")
     end,
+  },
 }

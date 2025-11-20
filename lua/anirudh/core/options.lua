@@ -1,5 +1,19 @@
 local opt = vim.opt
 
+vim.opt.updatetime = 250 -- shorter delay for CursorHold
+vim.api.nvim_create_augroup("DiagnosticsFloat", { clear = true })
+
+vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+	group = "DiagnosticsFloat",
+	callback = function()
+		vim.diagnostic.open_float(nil, {
+			focusable = false,
+			scope = "cursor",
+			close_events = { "BufLeave", "CursorMoved", "InsertEnter", "WinLeave" },
+		})
+	end,
+})
+
 --line numbers
 opt.relativenumber = true
 opt.number = true
@@ -33,7 +47,6 @@ opt.splitright = true
 opt.splitbelow = true
 
 opt.iskeyword:append("-")
-
 
 -- opt.guicursor = "n-v-c-i:block"
 

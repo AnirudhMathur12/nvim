@@ -2,6 +2,10 @@ vim.g.mapleader = " "
 
 local keymap = vim.keymap
 
+vim.keymap.set("n", "<leader>rr", function()
+	vim.cmd("luafile %")
+end)
+
 keymap.set("n", "<leader>nh", ":nohl<CR>")
 
 keymap.set("n", "x", '"_x')

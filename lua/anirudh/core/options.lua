@@ -1,14 +1,21 @@
 local opt = vim.opt
 
 vim.opt.updatetime = 250 -- shorter delay for CursorHold
-vim.api.nvim_create_augroup("DiagnosticsFloat", { clear = true })
 
-vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-	group = "DiagnosticsFloat",
+local group = vim.api.nvim_create_augroup("DiagnosticsFloat", { clear = true })
+
+vim.api.nvim_create_autocmd("CursorHold", { -- Removed "CursorHoldI"
+	group = group,
 	callback = function()
+		-- Strict check: If we are not in Normal mode, do nothing and return.
+		if vim.api.nvim_get_mode().mode ~= "n" then
+			return
+		end
+
 		vim.diagnostic.open_float(nil, {
 			focusable = false,
 			scope = "cursor",
+			-- Keep InsertEnter so it closes immediately when you switch to typing
 			close_events = { "BufLeave", "CursorMoved", "InsertEnter", "WinLeave" },
 		})
 	end,
